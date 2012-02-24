@@ -1,0 +1,21 @@
+<%= form_for(@nut, :class => "row") do |f| %>
+  <% if @nut.errors.any? %>
+    <div class="alert alert-block">
+      <a class="close" data-dismiss="alert">×</a>
+      <h4 class="alert-heading"><%= pluralize(@nut.errors.count, "error") %> prohibited this nut from being saved:</h4>
+      <ul>
+      <% @nut.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.text_field(:title, :class => "span6 giant") %>
+  <label class=""><h1>IN A NUTSHELL IS</h1></label>
+  <%= f.text_area(:body, rows: 10, :class => "span6 input-xlarge") %>
+
+  <div class="actions row">
+    <button type="submit" class="btn btn-primary span6">Create Nut</button>
+  </div>
+<% end %>

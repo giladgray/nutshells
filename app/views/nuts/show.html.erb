@@ -1,0 +1,18 @@
+<% unless notice.nil? %>
+  <div class="alert alert-success">
+    <a class="close" data-dismiss="alert">&times;</a>
+    <%= notice %>
+  </div>
+<% end %>
+<div class="header">
+  <div class="actions pull-right">
+    <%= link_to 'Edit', edit_nut_path(@nut), :class => "btn btn-info" %>
+    <%= link_to 'Delete', @nut, confirm: 'Are you sure?', method: :delete, class: "btn btn-danger" %>
+  </div>
+  <h1><%= @nut.title %></h1><h2>IN A NUTSHELL IS</h2>
+</div>
+<div class="row">
+  <div class="span12">
+    <%= @nut.body %>
+  </div>
+</div>

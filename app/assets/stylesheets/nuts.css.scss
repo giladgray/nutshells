@@ -1,0 +1,25 @@
+// Place all the styles related to the Nuts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+body {
+  font-family: "Helvetica Neue", Arial;
+}
+.giant {
+  font-size: 30px;
+}
+input.giant {
+  height: auto !important;
+}
+.nut .title {
+
+}
+.nut .body {
+
+}
+.nut .rating {
+
+}
+.full {
+  width: 98%;
+  height: auto;
+}

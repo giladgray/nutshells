@@ -1,0 +1,51 @@
+<div class="page-header">
+  <a class="btn btn-primary pull-right" data-toggle="modal" data-target="#newNutForm" >New Nut</a>
+  <h1>
+    <% if @q.nil? %>
+      ALL NUTSHELLS
+    <% else %>
+      NUTSHELLS ABOUT <code class="giant"><%= @q %></code>
+      <a class="btn" href="/" title="Clear search">&times;</a>
+    <% end %>
+  </h1>
+</div>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Rating</th>
+    <th>Body</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @nuts.each do |nut| %>
+    <tr id="nut<%= nut.id %>">
+      <td class="nut title span3"><h3><%= nut.title %></h3></td>
+      <td class="nut rating span2">
+        <div>
+        <%= nut.rating %>
+        <div class="btn-group">
+          <%= link_to raw('<i class="icon-ok"></i>'), '#', :data_id => nut.id, class: "btn rate-up btn-success" %>
+          <%= link_to raw('<i class="icon-remove"></i>'), '#', :data_id => nut.id, class: "btn rate-down btn-danger" %>
+        </div>
+        </div>
+      </td>
+      <td class="nut body span5"><%= nut.body.truncate(32) unless nut.body.nil? %></td>
+      <td class="nut actions span3">
+        <div class="btn-group">
+          <%= link_to raw('<i class="icon-ok"></i>'), '#', :data_id => nut.id, class: "btn rate-up btn-success" %>
+          <%= link_to raw('<i class="icon-remove"></i>'), '#', :data_id => nut.id, class: "btn rate-down btn-danger" %>
+          <%= link_to raw('<i class="icon-edit"></i>'), edit_nut_path(nut), class: "btn btn-info" %>
+          <%= link_to raw('<i class="icon-trash icon-white"></i>'), nut, confirm: 'Are you sure?', method: :delete, class: "btn btn-inverse" %>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br/>
+

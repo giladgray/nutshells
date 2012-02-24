@@ -1,0 +1,25 @@
+<h1>Results for search <strong><%= params[:query] %></strong></h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Rating</th>
+    <th>Body</th>
+    <th colspan="5">Actions</th>
+  </tr>
+
+<% @nuts.each do |nut| %>
+  <tr id="nut<%= nut.id%>">
+    <td class="nut title"><%= nut.title %></td>
+    <td class="nut rating"><%= nut.rating %></td>
+    <td class="nut body"><%= nut.body.truncate(32) unless nut.body.nil? %></td>
+    <td><%= link_to 'Show', nut %></td>
+    <td><%= link_to 'Edit', edit_nut_path(nut) %></td>
+    <td><%= link_to 'Destroy', nut, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Up', '#', :data_id => nut.id, :class => "rate-up" %></td>
+    <td><%= link_to 'Down', '#', :data_id => nut.id, :class => "rate-down" %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
