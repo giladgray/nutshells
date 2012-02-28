@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nutshells | <%= yield(:title) if content_for? :title %></title>
+  <%= stylesheet_link_tag "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="/">NUTSHELLS</a>
+      <ul class="nav">
+        <li class="active">
+          <a href="/">Home</a>
+        </li>
+        <li><a href="#">Top</a></li>
+        <li><a href="#">New</a></li>
+        <li>
+      <form method="get" action="/" class="navbar-search">
+        <label>
+          <%= text_field_tag :query, nil, class: "search-query", placeholder: "Search for nutshells" %>
+        </label>
+      </form>
+        </li>
+        <li><%= link_to "Login", login_path %></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="span10 offset1">
+    <%= yield %>
+  </div>
+</div>
+
+<div class="modal fade" id="newNutForm">
+  <%= form_for(@nut, remote: true) do |f| %>
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">&times;</a>
+    Create a New Nut
+  </div>
+    <div class="modal-body">
+      <%= f.text_field(:title, class: "full giant", placeholder: "WHAT") %>
+      <label class=""><h1>IN A NUTSHELL IS</h1></label>
+      <%= f.text_area(:body, rows: 4, class: "full") %>
+    </div>
+    <div class="modal-footer">
+      <button type="cancel" class="btn span1" data-dismiss="modal">Cancel</button>
+      <button id="submitNewNutButton" type="submit" class="btn btn-primary span5" data-dismiss="modal">Create Nut</button>
+    </div>
+  <% end %>
+</div>
+
+</body>
+</html>

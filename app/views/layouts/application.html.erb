@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Nutshells | <%= yield(:title) if content_for? :title %></title>
+  <title>Nutshells<%= content_for?(:title) ? " | #{yield(:title)}" : "" %></title>
   <%= stylesheet_link_tag "application" %>
   <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
+  <%= csrf_meta_tag %>
+  <%= yield(:head) %>
 </head>
 <body>
 
@@ -14,31 +15,54 @@
       <a class="brand" href="/">NUTSHELLS</a>
       <ul class="nav">
         <li class="active">
-          <a href="#">Home</a>
+          <a href="/">Home</a>
         </li>
-        <li><a href="#">Link</a></li>
-        <li><a href="#">Link</a></li>
+        <li><a href="#">Top</a></li>
+        <li><a href="#">New</a></li>
       </ul>
-      <form method="get" action="/" class="navbar-search pull-right">
-        <label>
-          <%= text_field_tag :query, nil, class: "search-query", placeholder: "Search for nutshells" %>
-        </label>
-      </form>
+      <ul class="nav pull-right">
+        <li>
+          <form method="get" action="/" class="navbar-search">
+            <label>
+              <%= text_field_tag :query, nil, class: "search-query", placeholder: "Search for nutshells" %>
+            </label>
+          </form>
+        </li>
+        <li class="divider-vertical"></li>
+        <% if logged_in? %>
+          <li><%= link_to current_user.username, edit_current_user_path %></li>
+          <li><%= link_to "Logout", logout_path %></li>
+        <% else %>
+          <li><%= link_to "Sign Up", signup_path %></li>
+          <li><%= link_to "Login", login_path %></li>
+        <% end %>
+      </ul>
     </div>
   </div>
 </div>
+
 <div class="container">
   <div class="span10 offset1">
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, class: "alert #{alert_class(name)}", id: "flash_#{name}" do %>
+        <a class="close" data-dismiss="alert">&times;</a>
+        <%= msg %>
+      <% end %>
+    <% end %>
+
+    <% if show_title? %>
+      <div class="page-header"><%= content_tag :h1, yield(:header_title)%></div>
+    <% end %>
     <%= yield %>
   </div>
 </div>
 
 <div class="modal fade" id="newNutForm">
-  <%= form_for(@nut, remote: true) do |f| %>
-  <div class="modal-header">
-    <a class="close" data-dismiss="modal">&times;</a>
-    Create a New Nut
-  </div>
+  <%= form_for(@nut = Nut.new, remote: true) do |f| %>
+    <div class="modal-header">
+      <a class="close" data-dismiss="modal">&times;</a>
+      Create a New Nut
+    </div>
     <div class="modal-body">
       <%= f.text_field(:title, class: "full giant", placeholder: "WHAT") %>
       <label class=""><h1>IN A NUTSHELL IS</h1></label>
@@ -46,10 +70,9 @@
     </div>
     <div class="modal-footer">
       <button type="cancel" class="btn span1" data-dismiss="modal">Cancel</button>
-      <button id="submitNewNutButton" type="submit" class="btn btn-primary span5" data-dismiss="modal">Create Nut</button>
+      <button id="submitNewNutButton" type="submit" class="btn btn-primary span5">Create Nut</button>
     </div>
   <% end %>
 </div>
-
 </body>
 </html>

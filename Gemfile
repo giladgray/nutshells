@@ -14,10 +14,14 @@ group :assets do
   gem 'coffee-rails', '~> 3.1.1'
   gem 'uglifier', '>= 1.0.3'
 end
+group :development do
+  gem 'nifty-generators'
+end
 group :production do
   gem 'pg'
 end
 
+gem 'bcrypt-ruby', :require => 'bcrypt'
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
@@ -35,4 +39,5 @@ gem 'jquery-rails'
 group :test do
   # Pretty printed test output
   gem 'turn', '~> 0.8.3', :require => false
+  gem "mocha"
 end

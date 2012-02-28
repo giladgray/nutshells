@@ -4,6 +4,7 @@ class CreateNuts < ActiveRecord::Migration
       t.string :title
       t.string :body
       t.integer :rating
+      t.integer :user_id
 
       t.timestamps
     end
