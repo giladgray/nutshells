@@ -1,1 +1,23 @@
 <%= render 'form' %>
+
+<% unless logged_in? %>
+  <a class="launchModal" data-toggle="modal fade" href="#loginplzModal"></a>
+  <div class="modal" id="loginplzModal">
+    <div class="modal-header">
+      <a class="close hide" data-dismiss="modal">×</a>
+      UH OH
+    </div>
+    <div class="modal-body">
+      <strong>You must be signed in to create nuts.</strong> This is too precious for some random anonymous Joe!
+      Login or create an account and we'll reconsider.
+      <div class="well alert-success pull-left">
+        <h2>LOGIN</h2>
+        <%= render "sessions/form" %>
+      </div>
+      <div class="well alert-info pull-right">
+        <h2>SIGN UP</h2>
+        <%= render "users/form" %>
+      </div>
+    </div>
+  </div>
+<% end %>

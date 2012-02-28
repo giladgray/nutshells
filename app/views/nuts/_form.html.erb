@@ -1,4 +1,4 @@
-<%= form_for(@nut, :class => "row") do |f| %>
+<%= form_for(@nut ||= Nut.new, :class => "row") do |f| %>
   <% if @nut.errors.any? %>
     <div class="alert alert-block">
       <a class="close" data-dismiss="alert">×</a>

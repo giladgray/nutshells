@@ -1,11 +1,12 @@
+<% labels ||= false %>
+<% signup ||= false %>
 <%= form_tag sessions_path do %>
-  <p>
-    <%= label_tag :login, "Username or Email Address" %>
-    <%= text_field_tag :login, params[:login], placeholder: "Username or email" %>
-  </p>
-  <p>
-    <%= label_tag :password %>
-    <%= password_field_tag :password, nil, placeholder: "Password" %>
-  </p>
-  <p><%= submit_tag "Log in" %></p>
+  <%= if labels then f.label :login, "Username or email" end %>
+  <%= text_field_tag :login, params[:login], placeholder: "Username or email" %>
+
+  <%= labels ? f.label(password) : raw("<br/>") %>
+  <%= password_field_tag :password, nil, placeholder: "Password" %><br/>
+
+  <%= if signup then link_to "Sign up!", signup_path, class: "btn" end %>
+  <%= submit_tag "Log in", class: "btn btn-primary" %>
 <% end %>

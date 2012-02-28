@@ -41,7 +41,7 @@
   </div>
 </div>
 
-<div class="container">
+<div class="container-fluid">
   <div class="span10 offset1">
     <% flash.each do |name, msg| %>
       <%= content_tag :div, class: "alert #{alert_class(name)}", id: "flash_#{name}" do %>

@@ -10,11 +10,9 @@ class NutsController < ApplicationController
       @nuts = Nut.order("rating DESC").all
     end
 
-    @nut = Nut.new
-
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @nuts }
+      format.json { render json: @nuts, include: :user, except: [:user_id, :password_hash, :password_salt]  }
     end
   end
 
@@ -25,18 +23,14 @@ class NutsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @nut }
+      format.json { render json: @nut, include: :user }
     end
   end
 
   # GET /nuts/new
-  # GET /nuts/new.json
   def new
-    @nut = Nut.new
-
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @nut }
     end
   end
 
@@ -50,6 +44,7 @@ class NutsController < ApplicationController
   def create
     @nut = Nut.new(params[:nut])
     @nut.rating = 0
+    @nut.user = current_user
 
     respond_to do |format|
       if @nut.save

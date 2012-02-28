@@ -6,11 +6,6 @@
   </span>
   <h1>IDENTIFY YOURSELF</h1>
 </div>
-
-<%= form_tag sessions_path do %>
-    <%= text_field_tag :login, params[:login], placeholder: "Username or email" %><br/>
-    <%= password_field_tag :password, nil, placeholder: "Password" %>
-  <p><%= submit_tag "Log in", class: "btn btn-primary" %></p>
-<% end %>
-
-<p>Don't have an account? <%= link_to "Sign up!", signup_path, class: "btn " %></p>
+<div class="row">
+ <%= render "form" %>
+</div>
