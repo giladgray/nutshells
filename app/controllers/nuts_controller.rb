@@ -23,7 +23,7 @@ class NutsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @nut, include: :user }
+      format.json { render json: @nut, include: :user, except: [:user_id, :password_hash, :password_salt] }
     end
   end
 
