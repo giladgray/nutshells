@@ -15,13 +15,13 @@
       <a class="brand title" href="/">NUTSHELLS <i class="icon-lemon"></i></a>
       <ul class="nav">
         <li class="<%= 'active' if params[:action] == 'index' and params[:order_type].nil? %>">
-          <a href="/">Home</a>
+          <a href="/"><i class="icon-home"></i><span>Home</span></a>
         </li>
-        <li class="<%= 'active' if params[:order_type] == :top %>"><a href="/top">Top</a></li>
-        <li class="<%= 'active' if params[:order_type] == :recent %>"><a href="/new">New</a></li>
+        <li class="<%= 'active' if params[:order_type] == :top %>"><a href="/top"><i class="icon-star"></i><span>Top</span></a></li>
+        <li class="<%= 'active' if params[:order_type] == :recent %>"><a href="/new"><i class="icon-time"></i><span>Recent</span></a></li>
+        <li><button class="btn btn-primary" data-toggle="modal" data-target="#newNutForm"><i class="icon-pencil"></i><span>New Nut</span></button></li>
       </ul>
       <ul class="nav pull-right">
-        <li><button class="btn btn-primary" data-toggle="modal" data-target="#newNutForm"><i class="icon-pencil"></i> New Nut</button></li>
         <li>
           <form method="get" action="/" class="navbar-search">
             <%= text_field_tag :query, nil, class: "search-query input-medium", placeholder: "Search for nutshells" %>

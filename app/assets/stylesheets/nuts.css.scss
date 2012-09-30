@@ -14,6 +14,7 @@ $navbarLinkColorHover: darken(whiteSmoke, 5%);
 body {
   font-family: "Helvetica Neue", Arial;
   margin-top: 50px;
+  @media (max-width: 480px) { margin-top: 80px; }
 }
 
 a { color: #663300; }
@@ -28,6 +29,8 @@ a:hover { color: darken(#663300, 5%); }
   display: block;
   float: none;
 }
+
+[class^="icon-"], [class*=" icon-"] { background-image: none !important;}
 
 // make an element full-width
 .full {
@@ -45,7 +48,12 @@ input.giant {
 
 .nav { 
 	input { box-sizing: initial; }
-	button { margin-right: 10px; }
+	button { margin: 0 10px; }
+	@media (max-width: 768px) {
+		span { display: none;}
+		> li > a { padding: 10px 12px !important; }
+		button { margin-left: 5px; }
+	}
 }
 
 .title {
@@ -91,6 +99,15 @@ input.giant {
 			padding: 8px 5px;
 		}
 	}
+
+	@media (max-width: 480px) {
+		width: 100%;
+		.title {
+			display: block;
+			text-align: left;
+		}
+		.body { max-width: 220px; }
+	}
 }
 
 // styles for viewing a single shell and all its nuts
@@ -99,6 +116,9 @@ input.giant {
 	border-radius: 10px;
 	padding: 5px 15px;
 	margin: 20px;
+	
+	small { display: inline-block; }
+
 	// box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.25);
 	// list all nuts with some clever :before text
 	ul {
@@ -108,7 +128,7 @@ input.giant {
 			font-weight: bold;
 			vertical-align: middle;
 			padding: 0 5px;
-			width: 50px;
+			width: 40px;
 			display: inline-block;
 			text-align: right;
 			margin-left: -50px;
@@ -117,6 +137,11 @@ input.giant {
 		li + li:before { content: "OR"; }
 
 		button { margin: 5px 8px; }
+	}
+
+	@media (max-width: 768px) {
+		width: 100% !important;
+		.nut { width: auto; }
 	}
 }
 // display classes for ul - as an inline grid or a list
