@@ -7,7 +7,7 @@
 		<% if @q.nil? %>
 			<%= params[:order_type] or 'all' %> Nutshells
 		<% else %>
-			Nutshells About <code class="giant"><%= @q %></code>
+			Nutshells About <code style="font-size:30px"><%= @q %></code>
 			<a class="btn" href="/" title="Clear search">&times;</a>
 		<% end %>
 	</h1>

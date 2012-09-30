@@ -12,7 +12,7 @@
 <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="/">NUTSHELLS <i class="icon-lemon"></i></a>
+      <a class="brand title" href="/">NUTSHELLS <i class="icon-lemon"></i></a>
       <ul class="nav">
         <li class="<%= 'active' if params[:order_type].nil? %>">
           <a href="/">Home</a>
@@ -65,11 +65,11 @@
       Create a New Nut
     </div>
     <div class="modal-body">
-      <%= f.text_field(:title, class: "full giant", placeholder: "WHAT") %>
+      <%= f.text_field(:title, class: "full giant title", placeholder: "WHAT") %>
       <label class=""><h1>IN A NUTSHELL IS</h1></label>
-      <%= f.text_area(:body, rows: 4, class: "full") %>
+      <%= f.text_area(:body, rows: 2, class: "full") %>
     </div>
-    <div class="modal-footer form-actions row-fluid">
+    <div class="modal-footer row-fluid">
       <span class="span4"></span>
       <button id="submitNewNutButton" type="submit" class="btn btn-large btn-primary span6"><i class="icon-lemon"></i> Create Nut</button>
       <button type="cancel" class="btn btn-large span2" data-dismiss="modal">Cancel</button>

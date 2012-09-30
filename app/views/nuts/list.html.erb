@@ -4,7 +4,7 @@
 	<ul id="nuts" class="unstyled list">
 	<% @nuts.each do |nut| %>
 		<li>
-			<div class="nut">
+			<div class="nut" id="nut-<%= nut.id %>">
 				<span class="body"><%= nut.body %></span>
 				<span class="rating">
 					<%= raw rating nut %>
