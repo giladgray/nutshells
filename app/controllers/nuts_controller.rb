@@ -2,12 +2,20 @@ class NutsController < ApplicationController
   # GET /nuts
   # GET /nuts.json
   def index
+    # this route handles listing all nuts or querying them
     if params.has_key? "query" and not params[:query].blank?
-      query = "%" + params[:query] + "%"
+      query = "%#{params[:query]}%"
       @nuts = Nut.where("title LIKE ?", query).order("rating DESC")
       @q = params[:query]
     else
-      @nuts = Nut.order("rating DESC").all
+      case params[:order_type]
+        when :top
+          @nuts = Nut.group('title').having("max(rating) > 0").order("title ASC")
+        when :recent
+          @nuts = Nut.order("created_at DESC").all
+        else
+          @nuts = Nut.order("rating DESC").all
+      end
     end
 
     respond_to do |format|
@@ -23,6 +31,19 @@ class NutsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
+      format.json { render json: @nut, include: :user, except: [:user_id, :password_hash, :password_salt] }
+    end
+  end
+
+  # a list of all the nuts for a given shell title
+  def list
+    # if /is route then only show the most popular nut
+    if params[:is] then @nuts = [Nut.order("rating DESC").find_by_title(params[:title])]
+    # otherwise show all the nuts for this title
+    else @nuts = Nut.order("rating DESC").find_all_by_title(params[:title]) end
+
+    respond_to do |format|
+      format.html # list.html.erb
       format.json { render json: @nut, include: :user, except: [:user_id, :password_hash, :password_salt] }
     end
   end

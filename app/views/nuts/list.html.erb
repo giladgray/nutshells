@@ -1,0 +1,19 @@
+<div class="span8 centered choices">
+	<h1 class="title"><%= params[:title] %> <i class="icon-lemon"></i> <small>in a nutshell</small></h1>
+
+	<ul id="nuts" class="unstyled list">
+	<% @nuts.each do |nut| %>
+		<li>
+			<div class="nut">
+				<span class="body"><%= nut.body.truncate(32) unless nut.body.nil? %></span>
+				<span class="rating">
+					<%= raw rating nut %>
+				</span>
+			</div>
+		</li>
+	<% end %>
+	<% unless params[:is] %>
+		<li><button class="btn btn-large" onclick="nutModal('<%= params[:title] %>')"><i class="icon-pencil"></i> Add Your Own</button></li>
+	<% end %>
+	</ul>
+</div>

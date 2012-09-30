@@ -1,25 +1,111 @@
 // Place all the styles related to the Nuts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'bootstrap';
+@import 'font-awesome';
+
 body {
   font-family: "Helvetica Neue", Arial;
 }
-.giant {
-  font-size: 30px;
+
+* { box-sizing: border-box; }
+
+// fancy class for centering a fluid span
+.row-fluid [class*="span"].centered {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  float: none;
 }
+
+// make an element full-width
+.full {
+  width: 100%;
+  height: auto;
+}
+
+h1 { text-transform: uppercase; }
+
 input.giant {
+  font-size: 30px;
+  line-height: 35px;
   height: auto !important;
 }
-.nut .title {
 
+.nav { 
+	input { box-sizing: initial; }
+	button { margin-right: 10px; }
 }
-.nut .body {
 
-}
-.nut .rating {
+// standard formatting for a nut
+.nut {
+	display: inline-block;
+	border: 1px solid #999;
+	border-radius: 5px;
+	margin: 5px;
+	padding: 5px;
+	padding-left: 10px;
 
+	// make all direct child elements align vertically by center
+	> * { 
+		vertical-align: middle; 
+		display: inline-block;
+	}
+
+	.title {
+		text-align: right;
+		text-transform: uppercase;
+		font-size: 24px;
+		line-height: 24px;
+	}
+	.body {
+		font-size: 16px;
+	}
+	.rating {
+		padding-left: 10px; 
+		* { vertical-align: middle; }
+		.label { font-size: 20px; }
+	}
 }
-.full {
-  width: 98%;
-  height: auto;
+
+// styles for viewing a single shell and all its nuts
+.choices {
+	border: 3px solid #aaa;
+	border-radius: 10px;
+	padding: 5px 15px;
+	// box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.25);
+	// list all nuts with some clever :before text
+	ul {
+		margin-left: 50px;
+		li:before {
+			font-size: 24px;
+			font-weight: bold;
+			vertical-align: middle;
+			padding: 0 5px;
+			width: 50px;
+			display: inline-block;
+			text-align: right;
+			margin-left: -50px;
+		}
+		li:first-child:before { content: "IS"; }
+		li + li:before { content: "OR"; }
+
+		button { margin: 5px 8px; }
+	}
+}
+// display classes for ul - as an inline grid or a list
+ul.grid {
+	li {
+		display: inline-block;
+	}
+}
+// ul.list {
+// 	li {
+// 	}
+// }
+
+.modal {
+	form, input { margin: 0; text-transform: uppercase;}
+	textarea { max-width: 100%; }
 }

@@ -9,14 +9,22 @@ Nutshell::Application.routes.draw do
 
   resources :users
 
-  resources :nuts
+  resources :nuts do
+    member do
+      get 'up' #, :as => :nut_up
+      get 'down' #, :as => :nut_down
+    end
+  end
 
-  root :to => "nuts#index"
+  root :to => 'nuts#index'
 
-  match "nuts/:id/up" => "nuts#up", :as => :nuts_up
-  match "nuts/:id/down" => "nuts#down", :as => :nuts_down
+  match '/top' => 'nuts#index', order_type: :top
+  match '/new' => 'nuts#index', order_type: :recent
 
-  match "/:query" => "nuts#index"
+  # match '/:query' => 'nuts#index'
+  match '/:title/is' => 'nuts#list', is: true
+  match '/:title' => 'nuts#list'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -65,11 +73,11 @@ Nutshell::Application.routes.draw do
   #     resources :products
   #   end
 
-  # You can have the root of your site routed with "root"
+  # You can have the root of your site routed with 'root'
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
 
-  # See how all your routes lay out with "rake routes"
+  # See how all your routes lay out with 'rake routes'
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
