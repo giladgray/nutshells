@@ -38,7 +38,7 @@ class NutsController < ApplicationController
   # a list of all the nuts for a given shell title
   def list
     # if /is route then only show the most popular nut
-    if params[:is] then @nuts = [Nut.order("rating DESC").find_by_title(params[:title])]
+    if params[:is] then @nuts = Nut.order("rating DESC").where("rating > 0").limit(3).find_all_by_title(params[:title])
     # otherwise show all the nuts for this title
     else @nuts = Nut.order("rating DESC").find_all_by_title(params[:title]) end
 
