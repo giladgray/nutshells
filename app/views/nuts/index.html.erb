@@ -1,7 +1,7 @@
 <div class="page-header">
 	<div class="btn-group pull-right" data-toggle="buttons-radio">
-		<button class="btn active" id="showGrid"><i class="icon-th"></i> Grid</button>
-		<button class="btn" id="showList"><i class="icon-list"></i> List</button>
+		<button class="btn" id="showGrid"><i class="icon-th"></i> Grid</button>
+		<button class="btn active" id="showList"><i class="icon-list"></i> List</button>
 	</div>
 	<h1>
 		<% if @q.nil? %>
@@ -13,14 +13,14 @@
 	</h1>
 </div>
 
-<ul id="nuts" class="unstyled grid">
+<ul id="nuts" class="unstyled">
 	<% @nuts.each do |nut| %>
 	<li>
 		<div class="nut">
 			<span class="title">
 				<%= link_to "/#{nut.title}" do nut.title end %>
-				<i class="icon-lemon"></i>
 			</span>
+			<span class="icon"><i class="icon-lemon"></i></span>
 			<span class="body"><%= nut.body %></span>
 			<span class="rating"><%= raw rating nut %></span>
 		</div>
