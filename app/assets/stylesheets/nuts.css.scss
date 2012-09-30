@@ -61,11 +61,20 @@ input.giant {
 	}
 	.body {
 		font-size: 16px;
+		max-width: 400px;
 	}
 	.rating {
 		padding-left: 10px; 
+		width: 85px;
+		text-align: right;
 		* { vertical-align: middle; }
-		.label { font-size: 20px; }
+		.label { 
+			font-size: 20px; 
+			min-width: 30px;
+			display: inline-block;
+			text-align: center;
+			padding: 8px 5px;
+		}
 	}
 }
 

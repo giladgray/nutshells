@@ -5,7 +5,7 @@
 	<% @nuts.each do |nut| %>
 		<li>
 			<div class="nut">
-				<span class="body"><%= nut.body.truncate(32) unless nut.body.nil? %></span>
+				<span class="body"><%= nut.body %></span>
 				<span class="rating">
 					<%= raw rating nut %>
 				</span>
