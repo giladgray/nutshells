@@ -24,6 +24,7 @@ gem 'bcrypt-ruby', :require => 'bcrypt'
 gem 'bootstrap-sass', '~> 2.1.0.0'
 gem 'jquery-rails'
 gem 'eco'
+gem 'nokogiri'
 
 group :test do
   # Pretty printed test output

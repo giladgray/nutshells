@@ -3,5 +3,8 @@ class Nut < ActiveRecord::Base
 
   validates :title, :body, :presence => true
 
-  before_save { |nut| nut.title = nut.title.downcase }
+  before_save do |nut|
+  		nut.title = nut.title.downcase 
+  		nut.rating ||= 0
+  end
 end
