@@ -10,7 +10,7 @@ $.ready = (document) ->
   # submitting form hides modal
   $("#newNutForm form").submit -> $("#newNutForm").modal('hide')
   # hiding modal resets form
-  $("#newNutForm").on 'hide', -> $("#newNutForm form")[0].reset()
+  $("#newNutForm").on 'hidden', -> $("#newNutForm form")[0].reset()
 
   # grid/list display toggle buttons
   $("#showGrid").click -> $("#nuts").removeClass('list').addClass('grid')
