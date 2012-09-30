@@ -9,12 +9,12 @@
 </head>
 <body>
 
-<div class="navbar">
+<div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
-    <div class="container">
+    <div class="container-fluid">
       <a class="brand title" href="/">NUTSHELLS <i class="icon-lemon"></i></a>
       <ul class="nav">
-        <li class="<%= 'active' if params[:order_type].nil? %>">
+        <li class="<%= 'active' if params[:action] == 'index' and params[:order_type].nil? %>">
           <a href="/">Home</a>
         </li>
         <li class="<%= 'active' if params[:order_type] == :top %>"><a href="/top">Top</a></li>
