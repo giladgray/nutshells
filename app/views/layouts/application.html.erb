@@ -13,13 +13,15 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container-fluid">
-      <a class="brand title" href="/">NUTSHELLS <i class="icon-lemon"></i></a>
+      <a class="brand title" href="/"><span>NUTSHELLS </span><i class="icon-lemon"></i></a>
       <ul class="nav">
+        <li class="divider-vertical"></li>
         <li class="<%= 'active' if params[:action] == 'index' and params[:order_type].nil? %>">
           <a href="/"><i class="icon-home"></i><span>Home</span></a>
         </li>
         <li class="<%= 'active' if params[:order_type] == :top %>"><a href="/top"><i class="icon-star"></i><span>Top</span></a></li>
         <li class="<%= 'active' if params[:order_type] == :recent %>"><a href="/new"><i class="icon-time"></i><span>Recent</span></a></li>
+        <li class="divider-vertical"></li>
         <li><button class="btn btn-primary" data-toggle="modal" data-target="#newNutForm"><i class="icon-pencil"></i><span>New Nut</span></button></li>
       </ul>
       <ul class="nav pull-right">

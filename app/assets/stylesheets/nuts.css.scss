@@ -10,6 +10,9 @@ $navbarLinkColorHover: darken(whiteSmoke, 5%);
 @import 'bootstrap';
 @import 'font-awesome';
 
+@mixin shadow-black($opacity) {
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, $opacity);
+}
 
 body {
   font-family: "Helvetica Neue", Arial;
@@ -46,13 +49,25 @@ input.giant {
   height: auto !important;
 }
 
-.nav { 
+.brand {
+	@include shadow-black(0.25);
+}
+
+.navbar { 
 	input { box-sizing: initial; }
 	button { margin: 0 10px; }
 	@media (max-width: 768px) {
 		span { display: none;}
 		> li > a { padding: 10px 12px !important; }
 		button { margin-left: 5px; }
+	}
+	i { 
+		font-size: 18px; 
+		vertical-align: middle;
+	}
+	.brand i {
+		font-size: 1.25em;
+		vertical-align: middle;
 	}
 }
 
