@@ -2,19 +2,19 @@ class NutsController < ApplicationController
   # GET /nuts
   # GET /nuts.json
   def index
+    query = Nut.group('title').select('title')
     # this route handles listing all nuts or querying them
     if params.has_key? "query" and not params[:query].blank?
-      query = "%#{params[:query]}%"
-      @nuts = Nut.where("title LIKE ?", query).order("rating DESC")
+      @nuts = query.where("title LIKE ?", "%#{params[:query]}%").order("rating DESC")
       @q = params[:query]
     else
       case params[:order_type]
         when :top
-          @nuts = Nut.group('title').having("max(rating) > 0").order("title ASC")
+          @nuts = query.having("max(rating) > 0").order("title ASC")
         when :recent
-          @nuts = Nut.order("created_at DESC").all
+          @nuts = Nut.order("created_at DESC").limit(10)
         else
-          @nuts = Nut.order("rating DESC").all
+          @nuts = query.order("rating DESC").all
       end
     end
 
