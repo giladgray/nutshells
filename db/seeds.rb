@@ -10,7 +10,7 @@ require 'open-uri'
 require 'nokogiri'
 
 # a bunch of fun words for seeding the DB
-WORDS = %w(avocado pantaloons postmodernism ruby python california ramen Philadelphia evolution beef windows)
+WORDS = %w(avocado pantaloons postmodernism ruby python california ramen Philadelphia evolution beefy windows)
 
 puts "#{Nut.count} nuts in the bucket as we begin our adventure."
 

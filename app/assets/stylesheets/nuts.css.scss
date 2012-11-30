@@ -97,13 +97,13 @@ li { display: table-row; }
 		display: table-cell;
 	}
 
+	font-size: 24px;
+	line-height: 24px;
 	.title {
 		text-align: right;
-		font-size: 24px;
-		line-height: 24px;
 	}
 	.icon {
-		font-size: 30px;
+		font-size: 1.25em;
 		padding: 0 8px; 
 		i { width: 1em; }
 	}
@@ -131,6 +131,14 @@ li { display: table-row; }
 		padding-top: 38px;
 		.title { position: absolute; top: 10px; }
 		.icon { padding-left: 0; }
+	}
+}
+.big.nut {
+	font-size: 40px;
+	line-height: 40px;
+	padding: 10px 10px 10px 20px;
+	.icon { 
+		font-size: 1.25em;
 	}
 }
 

@@ -13,18 +13,19 @@
 	</h1>
 </div>
 
-<ul id="nuts" class="unstyled">
+<ul id="nuts" class="unstyled grid">
 	<% @nuts.each do |nut| %>
 	<li>
-		<div class="nut">
+		<div class="<%= 'big' unless nut.attributes.has_key? 'body' %> nut">
 			<span class="title">
-				<%= link_to "/#{nut.title}" do nut.title end %>
+				<%= link_to nut.title, "/#{nut.title}" %>
 			</span>
 			<span class="icon"><i class="icon-lemon"></i></span>
+			<% if nut.attributes.has_key? 'body' %>
 			<span class="body"><%= nut.body %></span>
 			<span class="rating"><%= raw rating nut %></span>
+			<% end %>
 		</div>
 	</li>
 	<% end %>
 </ul>
-
